@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roset Productions – Tenk. Design. Produser.</title>
+  <meta name="description" content="Din partner fra idé til ferdig produkt: 3D‑modellering, reverse engineering, 3D‑print og laserskjæring." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- AOS (scroll‑animasjoner) – valgfritt -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#0b0f1a;          /* hero bakgrunn */
+      --fg:#0f172a;          /* sidebakgrunn */
+      --card:#ffffff;        /* kort */
+      --txt:#0f172a;         /* tekst mørk */
+      --muted:#64748b;       /* dempet tekst */
+      --brand:#16a34a;       /* grønn aksent */
+      --ring: rgba(22,163,74,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--fg);color:var(--txt);line-height:1.5}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1200px,92vw);margin:0 auto}
+
+    /* NAV */
+    header{position:sticky;top:0;z-index:50;background:#ffffffcc;backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e5e7eb}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{font-weight:700;letter-spacing:.2px}
+    .brand b{color:var(--brand)}
+    .nav a{padding:8px 10px;border-radius:10px}
+    .nav a:hover{background:#f1f5f9}
+    .nav .links{display:flex;gap:4px;align-items:center}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:10px 14px;border-radius:12px;background:var(--brand);color:#fff;font-weight:600;box-shadow:0 6px 18px -8px var(--brand)}
+    .btn:hover{filter:brightness(1.05)}
+
+    /* HERO */
+    .hero{background:radial-gradient(1200px 600px at 20% -10%, #10b98133, transparent 60%),
+                         radial-gradient(900px 600px at 110% 10%, #22c55e33, transparent 50%),
+                         var(--bg);color:#e2e8f0}
+          
+    .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:64px 0}
+    .eyebrow{display:inline-block;margin-bottom:10px;padding:4px 10px;border:1px solid #22c55e55;border-radius:999px;color:#cbd5e1;font-size:.85rem}
+    h1{font-size:clamp(28px,5vw,52px);line-height:1.05;margin:0 0 10px}
+    .lead{font-size:clamp(16px,2.5vw,19px);color:#cbd5e1;margin:0 0 18px}
+    .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+    .hero .image{border-radius:16px;overflow:hidden;border:1px solid #1f2937}
+    .hero .image .ph{aspect-ratio:4/3;background:linear-gradient(135deg,#0b1220,#0b1724);display:grid;place-items:center;color:#94a3b8}
+
+    /* SECTION */
+    section{padding:56px 0}
+    .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px}
+    .section-head h2{margin:0;font-size:clamp(22px,3.5vw,34px)}
+    .section-head p{margin:6px 0 0;color:var(--muted)}
+
+    /* SERVICES */
+    .grid{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:18px}
+    @media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+    .card{background:var(--card);border:1px solid #e5e7eb;border-radius:16px;overflow:hidden}
+    .card .cover{aspect-ratio:16/9;background:#f1f5f9}
+    .card .pad{padding:18px}
+    .kicker{font-size:.85rem;color:var(--muted);margin:0 0 4px}
+    .card h3{margin:0 0 6px}
+    .muted{color:var(--muted)}
+    .chip{display:inline-block;margin-top:8px;padding:6px 10px;border-radius:999px;background:#f1f5f9;border:1px solid #e5e7eb;font-size:.85rem}
+
+    /* FOOTER */
+    footer{padding:40px 0;background:#0f172a;color:#e2e8f0;border-top:1px solid #1f2937}
+    footer a{color:#e2e8f0}
+    .footgrid{display:grid;grid-template-columns:1.2fr 1fr;gap:18px}
+    @media (max-width:900px){.footgrid{grid-template-columns:1fr}}
+    .contact{background:#0b1220;border:1px solid #1f2937;border-radius:14px;padding:18px}
+
+    /* Small helpers */
+    .shadow{box-shadow:0 15px 40px -20px rgba(2,6,23,.25)}
+    .ring{outline:2px solid var(--ring)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">R<b>OSET</b> PRODUCTIONS</div>
+      <nav class="links">
+        <a href="#hjem">Hjem</a>
+        <a href="#modellering">3D‑modellering</a>
+        <a href="#reverse">Reverse Engineering</a>
+        <a href="#produksjon">Produksjon</a>
+        <a class="btn" href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="hjem" class="hero">
+    <div class="container wrap">
+      <div data-aos="fade-up">
+        <span class="eyebrow">Tenk. Design. Produser.</span>
+        <h1>Din partner fra idé til ferdig produkt</h1>
+        <p class="lead">Vi hjelper deg frå første skisse til ferdig prototype og småskalaproduksjon. Praktiske løysingar, rask levering og god dialog – slik at idéane blir til konkrete produkt.</p>
+        <div class="cta">
+          <a class="btn" href="#kontakt">Kontakt oss</a>
+          <a class="btn" style="background:#111827" href="#produksjon">Kom i gang</a>
+        </div>
+      </div>
+      <div class="image shadow ring" data-aos="fade-left">
+        <div class="ph">Bilde/hero – bytt ut med produktfoto</div>
+      </div>
+    </div>
+  </main>
+
+  <section id="tjenester">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Våre tjenester</h2>
+          <p>3D‑modellering, reverse engineering, 3D‑print og laserskjæring</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <!-- 3D‑modellering -->
+        <article id="modellering" class="card shadow" data-aos="fade-up" data-aos-delay="50">
+          <div class="cover"></div>
+          <div class="pad">
+            <div class="kicker">3D‑modellering</div>
+            <h3>Fra idé til ferdig 3D‑modell</h3>
+            <p class="muted">CAD‑design og visualisering. Støtte i utviklingsløpet frå krav til leveranse.</p>
+            <a class="chip" href="#kontakt">Kom i gang</a>
+          </div>
+        </article>
+
+        <!-- Reverse Engineering -->
+        <article id="reverse" class="card shadow" data-aos="fade-up" data-aos-delay="150">
+          <div class="cover"></div>
+          <div class="pad">
+            <div class="kicker">Reverse Engineering</div>
+            <h3>3D‑skanning og digitalisering</h3>
+            <p class="muted">Nøyaktig skanning av eksisterande delar, digital rekonstruksjon og optimalisering.</p>
+            <a class="chip" href="#kontakt">Kom i gang</a>
+          </div>
+        </article>
+
+        <!-- Produksjon -->
+        <article id="produksjon" class="card shadow" data-aos="fade-up" data-aos-delay="250">
+          <div class="cover"></div>
+          <div class="pad">
+            <div class="kicker">Produksjon</div>
+            <h3>Fra prototype til serie</h3>
+            <p class="muted">Rask 3D‑print og laserskjæring. Fleksible material og finish‑val for små seriar.</p>
+            <a class="chip" href="#kontakt">Kom i gang</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="om">
+    <div class="container">
+      <div class="card shadow" style="padding:24px" data-aos="fade-up">
+        <h3 style="margin:0 0 6px">Slik jobbar vi</h3>
+        <p class="muted" style="margin:0">Hos Roset Productions gjer vi det enkelt å gå frå idé til ferdig produkt. Enten du kjem med ei skisse, ein fysisk del eller ein 3D‑modell, får du tett samarbeid, raske tilbakemeldingar og presise leveransar.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer id="kontakt">
+    <div class="container footgrid">
+      <div>
+        <h3 style="margin:0 0 8px">Ta kontakt</h3>
+        <p style="margin:0 0 14px;color:#cbd5e1">Vi svarer raskt — send ei melding eller ring oss.</p>
+        <div class="contact">
+          <p style="margin:0 0 6px">📞 Telefon: <a href="tel:+4791573327">+47 915 73 327</a></p>
+          <p style="margin:0 0 6px">✉️ E‑post: <a href="mailto:rosetproductions@gmail.com">rosetproductions@gmail.com</a></p>
+          <p style="margin:0">Adresse: Skarbøvikgata 4</p>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin:0 0 8px">Send forespørsel</h3>
+        <p style="margin:0 0 10px;color:#cbd5e1">Bruk vårt skjema for å sende filer og detaljer.</p>
+        <!-- Bytt URL til din publiserte Apps Script‑webapp eller GitHub‑hostede versjon av skjema -->
+        <a class="btn" href="#" id="openFormBtn">Åpne kontaktskjema</a>
+        <p class="muted" style="margin:10px 0 0">Tip: Du kan også embedde skjemaet her med iFrame om du ikkje bruker Google Sites.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ once:true, duration:500, easing:'ease-out-quad' });
+    // Pek knappen til skjemaet ditt (oppdater denne):
+    document.getElementById('openFormBtn').href = 'https://script.google.com/macros/s/REPLACE_WITH_YOUR_EXEC_URL/exec';
+  </script>
+</body>
+</html>
