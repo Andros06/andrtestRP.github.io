@@ -95,44 +95,45 @@
   </section>
 
   <script>
-    (()=>{
-      const hero = document.getElementById('hero');
-      const vid  = document.getElementById('heroVid');
-      let duration = 0;
-      let ready = false;
-
-      // Les metadata
-      vid.addEventListener('loadedmetadata', () => {
-        duration = vid.duration;
-        ready = true;
-        vid.pause();
-        vid.currentTime = 0;
-      });
-
-      // Scroll-funksjon
-      function updateVideoByScroll(){
-        if(!ready || duration === 0) return;
-        const rect = hero.getBoundingClientRect();
-        const winH = window.innerHeight;
-        // 0 = toppen av hero, 1 = slutten av hero
-        let p = (winH - rect.top) / (rect.height + winH*0.5);
-        p = Math.max(0, Math.min(1, p));
-        vid.currentTime = p * duration;
-      }
-
-      // Oppdater kontinuerlig når hero er synlig
-      const io = new IntersectionObserver((entries)=>{
-        if(entries[0].isIntersecting){
-          window.addEventListener('scroll', updateVideoByScroll, {passive:true});
-          updateVideoByScroll();
-        } else {
-          window.removeEventListener('scroll', updateVideoByScroll);
-        }
-      }, {threshold:0});
-      io.observe(hero);
-
-      window.addEventListener('resize', ()=>{ if(ready) updateVideoByScroll(); }, {passive:true});
-    })();
+  (()=>{
+    const hero = document.getElementById('hero');
+    const vid  = document.getElementById('heroVid');
+    let duration = 0, ready = false;
+    let targetTime = 0;
+  
+    vid.addEventListener('loadedmetadata', () => {
+      duration = vid.duration;
+      ready = true;
+      vid.pause();
+      vid.currentTime = 0;
+    });
+  
+    function progress(){
+      const rect = hero.getBoundingClientRect();
+      const winH = window.innerHeight;
+      let p = (winH - rect.top) / (rect.height + winH*0.5);
+      return Math.min(Math.max(p,0),1);
+    }
+  
+    function updateTarget(){
+      if(!ready) return;
+      targetTime = progress() * duration;
+    }
+  
+    // Glatt oppdatering
+    function smoothLoop(){
+      if(!ready) return;
+      // Lerping mot targetTime
+      const diff = targetTime - vid.currentTime;
+      vid.currentTime += diff * 0.2;   // 0.1–0.3 = tregare/raskare glatting
+      requestAnimationFrame(smoothLoop);
+    }
+  
+    requestAnimationFrame(smoothLoop);
+    window.addEventListener('scroll', updateTarget, {passive:true});
+    window.addEventListener('resize', updateTarget, {passive:true});
+  })();
   </script>
+
 </body>
 </html>
