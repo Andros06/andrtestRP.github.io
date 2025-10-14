@@ -80,6 +80,80 @@ section{padding:56px 0;background:#fff;}
   </div>
 </div>
 
+<!-- INTRO-SEKSJON -->
+<section class="intro">
+  <div class="intro-wrap">
+    <div class="intro-img">
+      <img src="./media/produkt.png" alt="3D-printet manifold">
+    </div>
+    <div class="intro-text">
+      <h2>Din partner fra idé til ferdig produkt</h2>
+      <p>
+        Vi tilbyr støtte gjennom hele utviklingsløpet – fra de første skissene og designprosessene 
+        til ferdige prototyper og småskalaproduksjon. Hos oss får du både kreativ veiledning og 
+        praktisk gjennomføring, slik at idéene dine blir til konkrete produkter.
+      </p>
+      <ul>
+        <li>Design og modellhjelp for å realisere idéer</li>
+        <li>Rask og fleksibel prototyping</li>
+        <li>Produksjon av serier tilpasset dine behov</li>
+      </ul>
+      <a href="#kontakt" class="btn intro-btn">Kontakt oss</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro{
+    background:#fff;
+    padding:80px 0;
+    border-top:1px solid #e5e7eb;
+    border-bottom:1px solid #e5e7eb;
+  }
+  .intro-wrap{
+    width:min(1100px,92vw);
+    margin:0 auto;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:40px;
+  }
+  .intro-img{flex:1 1 420px;text-align:center;}
+  .intro-img img{
+    max-width:100%;
+    height:auto;
+    border-radius:12px;
+    box-shadow:0 10px 30px -10px rgba(0,0,0,.15);
+  }
+  .intro-text{
+    flex:1 1 420px;
+    color:#1e293b;
+  }
+  .intro-text h2{
+    color:#0f172a;
+    font-size:clamp(24px,3vw,32px);
+    margin-top:0;
+    margin-bottom:16px;
+    font-weight:800;
+  }
+  .intro-text ul{
+    margin:16px 0 24px 0;
+    padding-left:20px;
+    line-height:1.6;
+  }
+  .intro-btn{
+    background:#1e3a8a;
+    color:#fff;
+    box-shadow:0 8px 25px -10px #1e3a8a;
+  }
+  @media(max-width:800px){
+    .intro-wrap{flex-direction:column;}
+    .intro-img, .intro-text{flex:1 1 100%;text-align:center;}
+    .intro-text ul{text-align:left;display:inline-block;}
+  }
+</style>
+
+  
 <section id="tjenester">
   <div class="container">
     <h2>Tjenester</h2>
