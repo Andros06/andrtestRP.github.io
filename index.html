@@ -1,148 +1,137 @@
 <!doctype html>
 <html lang="no">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Roset Productions – Exploded → Assembled</title>
-  <style>
-    :root{ --brand:#16a34a; --ink:#0f172a; --muted:#cbd5e1; }
-    *{box-sizing:border-box} html,body{margin:0}
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);scroll-behavior:smooth}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roset Productions – Exploded → Assembled</title>
+<style>
+:root{ --brand:#16a34a; --ink:#0f172a; --muted:#cbd5e1; }
+*{box-sizing:border-box} html,body{margin:0}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);scroll-behavior:smooth}
 
-    header{position:sticky;top:0;z-index:10;background:#ffffffcc;backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e5e7eb}
-    header .wrap{width:min(1100px,92vw);margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:8px 0}
-    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:10px 14px;border-radius:12px;background:var(--brand);color:#08121a;font-weight:800;text-decoration:none;box-shadow:0 10px 30px -12px #22c55e}
+header{position:sticky;top:0;z-index:10;background:#ffffffcc;backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e5e7eb}
+header .wrap{width:min(1100px,92vw);margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:8px 0}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:10px 14px;border-radius:12px;background:var(--brand);color:#08121a;font-weight:800;text-decoration:none;box-shadow:0 10px 30px -12px #22c55e}
 
-    /* HERO fullskjerm bakgrunnsvideo */
-    .hero{
-      position:relative;
-      min-height:100vh;
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:#fff;
-      text-align:center;
-      background:#000;
-    }
-    .hero video{
-      position:absolute;
-      top:0;left:0;width:100%;height:100%;
-      object-fit:cover;
-      z-index:0;
-      filter:saturate(1.05);
-    }
-    .scrim{
-      position:absolute;inset:0;z-index:1;
-      background:radial-gradient(70% 55% at 50% 35%, transparent, rgba(0,0,0,.45));
-    }
-    .hero .content{
-      position:relative;z-index:2;padding:clamp(16px,5vw,40px);
-    }
-    .eyebrow{
-      display:inline-block;margin-bottom:12px;
-      padding:6px 12px;border:1px solid #22c55e66;border-radius:999px;
-      color:var(--muted);backdrop-filter:blur(2px);
-    }
-    h1{margin:0 0 10px;font-size:clamp(32px,6vw,64px);line-height:1.05}
-    .lead{margin:0 0 16px;color:#cbd5e1;font-size:clamp(16px,2.5vw,20px)}
-    .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-    .cta .btn.secondary{background:#111827;color:#e5e7eb;box-shadow:0 10px 30px -12px rgba(31,41,55,.75)}
+/* HERO fullskjerm bakgrunnsvideo */
+.hero{
+  position:relative;
+  min-height:100vh;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  text-align:center;
+  background:#000;
+}
+.hero video{
+  position:absolute;
+  top:0;left:0;width:100%;height:100%;
+  object-fit:cover;
+  z-index:0;
+  filter:saturate(1.05);
+}
+.scrim{
+  position:absolute;inset:0;z-index:1;
+  background:radial-gradient(70% 55% at 50% 35%, transparent, rgba(0,0,0,.45));
+}
+.hero .content{
+  position:relative;z-index:2;padding:clamp(16px,5vw,40px);
+}
+.eyebrow{
+  display:inline-block;margin-bottom:12px;
+  padding:6px 12px;border:1px solid #22c55e66;border-radius:999px;
+  color:var(--muted);backdrop-filter:blur(2px);
+}
+h1{margin:0 0 10px;font-size:clamp(32px,6vw,64px);line-height:1.05}
+.lead{margin:0 0 16px;color:#cbd5e1;font-size:clamp(16px,2.5vw,20px)}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.cta .btn.secondary{background:#111827;color:#e5e7eb;box-shadow:0 10px 30px -12px rgba(31,41,55,.75)}
 
-    section{padding:56px 0;background:#fff;}
-    .container{width:min(1100px,92vw);margin:0 auto;color:#334155}
-  </style>
+section{padding:56px 0;background:#fff;}
+.container{width:min(1100px,92vw);margin:0 auto;color:#334155}
+</style>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <div style="font-weight:800;letter-spacing:.2px">ROSET PRODUCTIONS</div>
-      <nav style="display:flex;gap:8px;align-items:center">
-        <a href="#tjenester" style="padding:8px 10px;border-radius:10px;text-decoration:none;color:var(--ink)">Tjenester</a>
-        <a href="#kontakt" class="btn">Kontakt</a>
-      </nav>
-    </div>
-  </header>
+<header>
+  <div class="wrap">
+    <div style="font-weight:800;letter-spacing:.2px">ROSET PRODUCTIONS</div>
+    <nav style="display:flex;gap:8px;align-items:center">
+      <a href="#tjenester" style="padding:8px 10px;border-radius:10px;text-decoration:none;color:var(--ink)">Tjenester</a>
+      <a href="#kontakt" class="btn">Kontakt</a>
+    </nav>
+  </div>
+</header>
 
-  <div class="hero" id="hero">
-    <video id="heroVid" preload="metadata" playsinline muted poster="./media/poster.jpg">
-      <source src="./media/exploded.mp4" type="video/mp4">
-    </video>
-    <div class="scrim" aria-hidden="true"></div>
-    <div class="content">
-      <span class="eyebrow">Tenk. Design. Produser.</span>
-      <h1>Frå eksplodert → saman</h1>
-      <p class="lead">Scroll ned for å setje modellen saman. Scroll opp for å eksplodere igjen.</p>
-      <div class="cta">
-        <a href="#tjenester" class="btn">Sjå tenester</a>
-        <a href="#kontakt" class="btn secondary">Kontakt oss</a>
-      </div>
+<div class="hero" id="hero">
+  <video id="heroVid" playsinline muted preload="auto" poster="./media/poster.jpg">
+    <source src="./media/exploded.mp4" type="video/mp4">
+  </video>
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="content">
+    <span class="eyebrow">Tenk. Design. Produser.</span>
+    <h1>Frå eksplodert → saman</h1>
+    <p class="lead">Scroll ned for å setje modellen saman. Scroll opp for å eksplodere igjen.</p>
+    <div class="cta">
+      <a href="#tjenester" class="btn">Sjå tenester</a>
+      <a href="#kontakt" class="btn secondary">Kontakt oss</a>
     </div>
   </div>
+</div>
 
-  <section id="tjenester">
-    <div class="container">
-      <h2>Tjenester</h2>
-      <p>Bytt denne demoen med reelt innhald etter behov.</p>
-    </div>
-  </section>
+<section id="tjenester">
+  <div class="container">
+    <h2>Tjenester</h2>
+    <p>Bytt denne demoen med reelt innhald etter behov.</p>
+  </div>
+</section>
 
-  <section id="kontakt">
-    <div class="container">
-      <h2>Kontakt</h2>
-      <p>Lenk til Apps Script-skjemaet ditt, eller embed skjemaet.</p>
-    </div>
-  </section>
+<section id="kontakt">
+  <div class="container">
+    <h2>Kontakt</h2>
+    <p>Lenk til Apps Script-skjemaet ditt, eller embed skjemaet.</p>
+  </div>
+</section>
 
-  <script>
-  (()=>{
-    const hero = document.getElementById('hero');
-    const vid  = document.getElementById('heroVid');
-    let duration = 0;
-    let ready = false;
-    let targetTime = 0;
-  
-    // Når metadata er klare
-    vid.addEventListener('loadedmetadata', () => {
-      duration = vid.duration || 0;
-      ready = true;
-      vid.pause();
-      vid.currentTime = 0;
-      // start oppdatering straks video er klar
-      updateTarget();
-      requestAnimationFrame(smoothLoop);
-    });
-  
-    // sørg for at videoen faktisk laster
-    window.addEventListener('load', ()=>{
-      // tving innlasting av metadata + første frame
-      vid.load();
-    });
-  
-    function progress(){
-      const rect = hero.getBoundingClientRect();
-      const winH = window.innerHeight;
-      // 0 = toppen av hero, 1 = nesten nederst (80 %)
-      let p = (winH - rect.top) / (rect.height * 0.8 + winH);
-      return Math.min(Math.max(p,0),1);
+<script>
+(()=>{
+  const hero = document.getElementById('hero');
+  const vid  = document.getElementById('heroVid');
+  let duration = 0, ready = false;
+  let scrollProgress = 0;
+
+  // Start når videoen er klar
+  vid.addEventListener('loadedmetadata', ()=>{
+    duration = vid.duration;
+    ready = true;
+    vid.pause();
+    vid.currentTime = 0;
+    requestAnimationFrame(loop);
+  });
+
+  // Hjelpefunksjon for scroll-posisjon (0–1)
+  function getScrollProgress(){
+    const rect = hero.getBoundingClientRect();
+    const winH = window.innerHeight;
+    // 0 = topp av hero, 1 = bunn
+    let p = (winH - rect.top) / (rect.height + winH*0.5);
+    return Math.min(Math.max(p,0),1);
+  }
+
+  // Hovedloop for glatt oppdatering
+  function loop(){
+    if(ready){
+      const target = getScrollProgress();
+      // glatter litt slik at det føles jevnt
+      scrollProgress += (target - scrollProgress) * 0.15;
+      vid.currentTime = scrollProgress * duration;
     }
-  
-    function updateTarget(){
-      if(!ready || duration===0) return;
-      targetTime = progress() * duration;
-    }
-  
-    function smoothLoop(){
-      if(!ready) { requestAnimationFrame(smoothLoop); return; }
-      const diff = targetTime - vid.currentTime;
-      // glatting (0.2 = jevn; bruk 0.3 for raskare)
-      vid.currentTime += diff * 0.2;
-      requestAnimationFrame(smoothLoop);
-    }
-  
-    window.addEventListener('scroll', updateTarget, {passive:true});
-    window.addEventListener('resize', updateTarget, {passive:true});
-  })();
-  </script>
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('scroll', ()=>{}, {passive:true});
+})();
+</script>
 </body>
 </html>
