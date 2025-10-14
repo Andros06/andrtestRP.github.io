@@ -7,13 +7,13 @@
   <style>
     :root{ --brand:#16a34a; --ink:#0f172a; --muted:#cbd5e1; }
     *{box-sizing:border-box} html,body{margin:0}
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--ink);scroll-behavior:smooth;}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);scroll-behavior:smooth}
 
     header{position:sticky;top:0;z-index:10;background:#ffffffcc;backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e5e7eb}
     header .wrap{width:min(1100px,92vw);margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:8px 0}
     .btn{display:inline-flex;align-items:center;gap:.5rem;padding:10px 14px;border-radius:12px;background:var(--brand);color:#08121a;font-weight:800;text-decoration:none;box-shadow:0 10px 30px -12px #22c55e}
 
-    /* HERO fullskjerm bakgrunns-video */
+    /* HERO fullskjerm bakgrunnsvideo */
     .hero{
       position:relative;
       min-height:100vh;
@@ -23,32 +23,26 @@
       justify-content:center;
       color:#fff;
       text-align:center;
+      background:#000;
     }
     .hero video{
       position:absolute;
-      top:0; left:0; width:100%; height:100%;
+      top:0;left:0;width:100%;height:100%;
       object-fit:cover;
       z-index:0;
       filter:saturate(1.05);
     }
     .scrim{
-      position:absolute;
-      inset:0;
-      z-index:1;
+      position:absolute;inset:0;z-index:1;
       background:radial-gradient(70% 55% at 50% 35%, transparent, rgba(0,0,0,.45));
     }
     .hero .content{
-      position:relative;
-      z-index:2;
-      padding:clamp(16px,5vw,40px);
+      position:relative;z-index:2;padding:clamp(16px,5vw,40px);
     }
     .eyebrow{
       display:inline-block;margin-bottom:12px;
-      padding:6px 12px;
-      border:1px solid #22c55e66;
-      border-radius:999px;
-      color:var(--muted);
-      backdrop-filter:blur(2px);
+      padding:6px 12px;border:1px solid #22c55e66;border-radius:999px;
+      color:var(--muted);backdrop-filter:blur(2px);
     }
     h1{margin:0 0 10px;font-size:clamp(32px,6vw,64px);line-height:1.05}
     .lead{margin:0 0 16px;color:#cbd5e1;font-size:clamp(16px,2.5vw,20px)}
@@ -71,8 +65,9 @@
   </header>
 
   <div class="hero" id="hero">
-    <video id="heroVid" preload="auto" playsinline muted poster="./media/poster.jpg">
-      <source src="./media/exploded.mp4" type="video/mp4">
+    <video id="heroVid" preload="none" playsinline muted poster="./media/poster.jpg">
+      <source id="vidWebm" src="" type="video/webm">
+      <source id="vidMp4"  src="" type="video/mp4">
     </video>
     <div class="scrim" aria-hidden="true"></div>
     <div class="content">
@@ -105,33 +100,43 @@
       const hero = document.getElementById('hero');
       const vid  = document.getElementById('heroVid');
       let dur = 0, ready = false, active = false, running = false;
-      const SPEED = 1.8; // juster >1 for raskare animasjon (2 ≈ dobbel hastigheit)
+      const SPEED = 2.5; // juster for raskare animasjon
 
-      function readMeta(){
-        if (!isFinite(vid.duration) || vid.duration === 0) return;
-        dur = vid.duration; ready = true;
-        vid.pause(); vid.currentTime = 0;
+      // Lazy-load video først etter at resten er lasta
+      window.addEventListener("load", () => {
+        document.getElementById("vidWebm").src = "./media/exploded.comp.webm";
+        document.getElementById("vidMp4").src  = "./media/exploded.comp.mp4";
+        vid.load();
+      });
+
+      function initVideo(){
+        if (vid.readyState >= 1) {
+          dur = vid.duration || 0;
+          ready = true;
+          vid.pause();
+          vid.currentTime = 0;
+        }
       }
-      vid.addEventListener('loadedmetadata', readMeta);
-      vid.addEventListener('durationchange', readMeta);
+      vid.addEventListener('loadedmetadata', initVideo);
+      vid.addEventListener('loadeddata', initVideo);
+      vid.addEventListener('durationchange', initVideo);
 
       function progress(){
         const rect = hero.getBoundingClientRect();
-        const winH = window.innerHeight || document.documentElement.clientHeight;
-        // Juster slik at videoen blir ferdig før ein har scrola heile hero
+        const winH = window.innerHeight;
         let p = (winH - rect.top) / (rect.height * 0.6 + winH);
         return Math.min(Math.max(p,0),1);
       }
 
       function setTimeByScroll(){
-        if(!ready) return;
+        if(!ready || dur===0) return;
         const p = progress();
-        const t = p * dur * SPEED;
-        try { vid.currentTime = Math.min(t,dur); } catch(e){}
+        const t = Math.min(p * dur * SPEED, dur);
+        vid.currentTime = t;
       }
 
       function loop(){
-        if (!active) { running = false; return; }
+        if (!active){ running=false; return; }
         setTimeByScroll();
         requestAnimationFrame(loop);
       }
@@ -144,13 +149,11 @@
             requestAnimationFrame(loop);
           }
         });
-      }, {root:null, threshold:0});
+      });
       io.observe(hero);
 
-      addEventListener('resize', ()=>{ if(active) setTimeByScroll(); }, {passive:true});
-      addEventListener('scroll', ()=>{ if(active && !running){ setTimeByScroll(); } }, {passive:true});
-      addEventListener('wheel',  ()=>{ if(active) setTimeByScroll(); }, {passive:true});
-      addEventListener('touchmove', ()=>{ if(active) setTimeByScroll(); }, {passive:true});
+      window.addEventListener('scroll', ()=>{ if(active) setTimeByScroll(); }, {passive:true});
+      window.addEventListener('resize', ()=>{ if(active) setTimeByScroll(); }, {passive:true});
     })();
   </script>
 </body>
