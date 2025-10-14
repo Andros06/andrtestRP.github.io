@@ -66,7 +66,6 @@
 
   <div class="hero" id="hero">
     <video id="heroVid" preload="none" playsinline muted poster="./media/poster.jpg">
-      <source id="vidWebm" src="" type="video/webm">
       <source id="vidMp4"  src="" type="video/mp4">
     </video>
     <div class="scrim" aria-hidden="true"></div>
@@ -104,7 +103,6 @@
 
       // Lazy-load video først etter at resten er lasta
       window.addEventListener("load", () => {
-        document.getElementById("vidWebm").src = "./media/exploded.comp.webm";
         document.getElementById("vidMp4").src  = "./media/exploded.comp.mp4";
         vid.load();
       });
