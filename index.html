@@ -65,8 +65,8 @@
   </header>
 
   <div class="hero" id="hero">
-    <video id="heroVid" preload="none" playsinline muted poster="./media/poster.jpg">
-      <source id="vidMp4"  src="" type="video/mp4">
+    <video id="heroVid" preload="metadata" playsinline muted poster="./media/poster.jpg">
+      <source src="./media/exploded.mp4" type="video/mp4">
     </video>
     <div class="scrim" aria-hidden="true"></div>
     <div class="content">
@@ -95,63 +95,43 @@
   </section>
 
   <script>
-    (function(){
+    (()=>{
       const hero = document.getElementById('hero');
       const vid  = document.getElementById('heroVid');
-      let dur = 0, ready = false, active = false, running = false;
-      const SPEED = 2.5; // juster for raskare animasjon
+      let duration = 0;
+      let ready = false;
 
-      // Lazy-load video først etter at resten er lasta
-      window.addEventListener("load", () => {
-        document.getElementById("vidMp4").src  = "./media/exploded.comp.mp4";
-        vid.load();
+      // Les metadata
+      vid.addEventListener('loadedmetadata', () => {
+        duration = vid.duration;
+        ready = true;
+        vid.pause();
+        vid.currentTime = 0;
       });
 
-      function initVideo(){
-        if (vid.readyState >= 1) {
-          dur = vid.duration || 0;
-          ready = true;
-          vid.pause();
-          vid.currentTime = 0;
-        }
-      }
-      vid.addEventListener('loadedmetadata', initVideo);
-      vid.addEventListener('loadeddata', initVideo);
-      vid.addEventListener('durationchange', initVideo);
-
-      function progress(){
+      // Scroll-funksjon
+      function updateVideoByScroll(){
+        if(!ready || duration === 0) return;
         const rect = hero.getBoundingClientRect();
         const winH = window.innerHeight;
-        let p = (winH - rect.top) / (rect.height * 0.6 + winH);
-        return Math.min(Math.max(p,0),1);
+        // 0 = toppen av hero, 1 = slutten av hero
+        let p = (winH - rect.top) / (rect.height + winH*0.5);
+        p = Math.max(0, Math.min(1, p));
+        vid.currentTime = p * duration;
       }
 
-      function setTimeByScroll(){
-        if(!ready || dur===0) return;
-        const p = progress();
-        const t = Math.min(p * dur * SPEED, dur);
-        vid.currentTime = t;
-      }
-
-      function loop(){
-        if (!active){ running=false; return; }
-        setTimeByScroll();
-        requestAnimationFrame(loop);
-      }
-
+      // Oppdater kontinuerlig når hero er synlig
       const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          active = e.isIntersecting;
-          if (active && !running){
-            running = true;
-            requestAnimationFrame(loop);
-          }
-        });
-      });
+        if(entries[0].isIntersecting){
+          window.addEventListener('scroll', updateVideoByScroll, {passive:true});
+          updateVideoByScroll();
+        } else {
+          window.removeEventListener('scroll', updateVideoByScroll);
+        }
+      }, {threshold:0});
       io.observe(hero);
 
-      window.addEventListener('scroll', ()=>{ if(active) setTimeByScroll(); }, {passive:true});
-      window.addEventListener('resize', ()=>{ if(active) setTimeByScroll(); }, {passive:true});
+      window.addEventListener('resize', ()=>{ if(ready) updateVideoByScroll(); }, {passive:true});
     })();
   </script>
 </body>
